@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AquaRus — доставка воды 19л</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:#f4f8fb;
+  color:#17202a;
+}
+.app{
+  max-width:480px;
+  margin:auto;
+  min-height:100vh;
+  background:white;
+}
+header{
+  background:#087fc1;
+  color:white;
+  padding:28px 20px 24px;
+}
+.logo{
+  font-size:34px;
+  font-weight:800;
+}
+.subtitle{
+  margin-top:6px;
+  font-size:18px;
+}
+main{
+  padding:18px;
+}
+.card{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+  border:1px solid #e6edf2;
+}
+h2{
+  margin:0 0 14px;
+  font-size:23px;
+}
+.price{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:13px 0;
+  border-bottom:1px solid #edf0f2;
+  font-size:17px;
+}
+.price:last-child{border-bottom:0}
+.price b{
+  font-size:19px;
+}
+button{
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:16px;
+  font-size:18px;
+  font-weight:700;
+  margin-top:10px;
+  background:#087fc1;
+  color:white;
+}
+button:active{
+  transform:scale(.98);
+}
+.green{
+  background:#20a464;
+}
+input,select,textarea{
+  width:100%;
+  padding:15px;
+  border:1px solid #ccd7df;
+  border-radius:12px;
+  font-size:16px;
+  margin:7px 0 12px;
+  background:#fff;
+}
+label{
+  font-size:14px;
+  font-weight:600;
+}
+.info{
+  background:#eaf6ff;
+  border-radius:14px;
+  padding:15px;
+  line-height:1.5;
+}
+footer{
+  text-align:center;
+  color:#7a8790;
+  padding:25px 15px 100px;
+}
+.bottom{
+  position:fixed;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+  width:min(450px,92%);
+  display:flex;
+  gap:8px;
+}
+.bottom button{
+  margin:0;
+  box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="logo">AquaRus</div>
+  <div class="subtitle">Доставка воды 19 л</div>
+</header>
+
+<main>
+
+<div class="card">
+  <h2>💧 Вода AquaRus</h2>
+  <div class="info">
+    Чистая питьевая вода с доставкой прямо домой или в офис.
+  </div>
+</div>
+
+<div class="card">
+  <h2>Наши цены</h2>
+
+  <div class="price">
+    <span>Замена 19 л</span>
+    <b>800 ₸</b>
+  </div>
+
+  <div class="price">
+    <span>Новая бутылка 19 л</span>
+    <b>2 800 ₸</b>
+  </div>
+
+  <div class="price">
+    <span>Мойка кулера</span>
+    <b>7 000 ₸</b>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🚚 Заказать доставку</h2>
+
+  <label>Ваше имя</label>
+  <input id="name" placeholder="Введите имя">
+
+  <label>Телефон</label>
+  <input id="phone" type="tel" placeholder="+7 7XX XXX XX XX">
+
+  <label>Адрес доставки</label>
+  <textarea id="address" rows="3"
+    placeholder="Улица, дом, квартира"></textarea>
+
+  <label>Количество бутылок</label>
+  <select id="qty">
+    <option value="1">1 бутылка</option>
+    <option value="2">2 бутылки</option>
+    <option value="3">3 бутылки</option>
+    <option value="4">4 бутылки</option>
+    <option value="5">5 бутылок</option>
+    <option value="10">10 бутылок</option>
+  </select>
+
+  <button class="green" onclick="order()">
+    Заказать воду
+  </button>
+</div>
+
+<div class="card">
+  <h2>Почему AquaRus?</h2>
+  <p>✓ Доставка воды 19 л</p>
+  <p>✓ Доставка домой и в офис</p>
+  <p>✓ Быстрый заказ</p>
+  <p>✓ Удобная замена бутылей</p>
+</div>
+
+</main>
+
+<footer>
+  AquaRus<br>
+  Доставка воды 19 л
+</footer>
+
+<div class="bottom">
+  <button onclick="scrollToOrder()">🛒 Заказать</button>
+</div>
+
+</div>
+
+<script>
+function scrollToOrder(){
+  document.getElementById("name").scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+}
+
+function order(){
+  const name=document.getElementById("name").value;
+  const phone=document.getElementById("phone").value;
+  const address=document.getElementById("address").value;
+  const qty=document.getElementById("qty").value;
+
+  if(!name || !phone || !address){
+    alert("Пожалуйста, заполните имя, телефон и адрес.");
+    return;
+  }
+
+  const price=800;
+  const total=Number(qty)*price;
+
+  alert(
+    "Заказ принят!\n\n"+
+    "Имя: "+name+"\n"+
+    "Телефон: "+phone+"\n"+
+    "Адрес: "+address+"\n"+
+    "Количество: "+qty+" бутыл.\n"+
+    "Сумма: "+total+" ₸"
+  );
+}
+</script>
+
+</body>
+</html>
