@@ -224,14 +224,16 @@ function order(){
   const price=800;
   const total=Number(qty)*price;
 
-  alert(
-    "Заказ принят!\n\n"+
-    "Имя: "+name+"\n"+
-    "Телефон: "+phone+"\n"+
-    "Адрес: "+address+"\n"+
-    "Количество: "+qty+" бутыл.\n"+
-    "Сумма: "+total+" ₸"
-  );
+  const message =
+  "Заказ AquaRus\n\n" +
+  "Имя: " + name + "\n" +
+  "Телефон: " + phone + "\n" +
+  "Адрес: " + address + "\n" +
+  "Количество: " + qty + " бутыл.\n" +
+  "Сумма: " + total + " ₸";
+
+window.location.href =
+  "https://wa.me/77001259192?text=" + encodeURIComponent(message);
 }
 </script>
 
